@@ -1,17 +1,33 @@
 package com.moviecatalogservice.services;
 
+import com.example.TrendingMoviesServiceGrpc;
+import com.example.getMovieRequest;
 import com.moviecatalogservice.models.CatalogItem;
 import com.moviecatalogservice.models.Movie;
 import com.moviecatalogservice.models.Rating;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import io.grpc.Channel;
+import io.grpc.ManagedChannelBuilder;
+import net.devh.boot.grpc.client.inject.GrpcClient;
+import net.devh.boot.grpc.server.service.GrpcService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+
+
+import java.util.List;
 
 @Service
 public class MovieInfoService {
 
     private final RestTemplate restTemplate;
+
+//    @Autowired
+//    private TrendingMoviesServiceGrpc.TrendingMoviesServiceBlockingStub stub;
+
+
 
     public MovieInfoService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -38,6 +54,8 @@ public class MovieInfoService {
         Movie movie = this.restTemplate.getForObject(movieDetailsUrl, Movie.class);
         return new CatalogItem(movie.getName(), movie.getDescription(), rating.getRating());
     }
+
+
 
     public CatalogItem getFallbackCatalogItem(Rating rating) {
         return new CatalogItem("Movie name not found", "", rating.getRating());

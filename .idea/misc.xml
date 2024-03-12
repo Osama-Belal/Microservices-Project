@@ -10,6 +10,8 @@
         <option value="$PROJECT_DIR$/movie-info-service/pom.xml" />
         <option value="$PROJECT_DIR$/ratings-data-service/pom.xml" />
         <option value="$PROJECT_DIR$/trending-movies-service/pom.xml" />
+        <option value="$PROJECT_DIR$/trending-movie-service/pom.xml" />
+        <option value="$PROJECT_DIR$/proto/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

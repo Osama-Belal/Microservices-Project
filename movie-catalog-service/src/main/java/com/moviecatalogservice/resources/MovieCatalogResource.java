@@ -4,9 +4,11 @@ import com.moviecatalogservice.models.CatalogItem;
 import com.moviecatalogservice.models.Movie;
 import com.moviecatalogservice.models.Rating;
 import com.moviecatalogservice.models.UserRating;
+import com.moviecatalogservice.services.MovieGrpc;
 import com.moviecatalogservice.services.MovieInfoService;
 import com.moviecatalogservice.services.UserRatingService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,13 +29,17 @@ public class MovieCatalogResource {
 
     private final UserRatingService userRatingService;
 
+    private MovieGrpc movieGrpc;
+
     public MovieCatalogResource(RestTemplate restTemplate,
                                 MovieInfoService movieInfoService,
-                                UserRatingService userRatingService) {
+                                UserRatingService userRatingService,
+                                MovieGrpc movieGrpc) {
 
         this.restTemplate = restTemplate;
         this.movieInfoService = movieInfoService;
         this.userRatingService = userRatingService;
+        this.movieGrpc = movieGrpc;
     }
 
     /**
@@ -47,5 +53,11 @@ public class MovieCatalogResource {
     public List<CatalogItem> getCatalog(@PathVariable String userId) {
         List<Rating> ratings = userRatingService.getUserRating(userId).getRatings();
         return ratings.stream().map(movieInfoService::getCatalogItem).collect(Collectors.toList());
+    }
+
+    @RequestMapping("/trending")
+    public List<Movie> getTrendingMovies() {
+        movieGrpc.getTrending();
+        return null;
     }
 }
