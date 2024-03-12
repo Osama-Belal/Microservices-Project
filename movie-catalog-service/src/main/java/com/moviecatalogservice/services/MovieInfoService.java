@@ -9,8 +9,6 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
-import net.devh.boot.grpc.client.inject.GrpcClient;
-import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
