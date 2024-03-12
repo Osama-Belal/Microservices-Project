@@ -13,14 +13,13 @@ public class TrendingMoviesService extends TrendingMoviesServiceGrpc.TrendingMov
 
     @Override
     public void getTopTenTrendingMovies(getMovieRequest request, StreamObserver<topTenTrendingMovies> responseObserver) {
-//        Movie movie = Movie.newBuilder()
-//                .setMovieId("1")
-//                .build();
-//
-//        topTenTrendingMovies response = topTenTrendingMovies.newBuilder()
-//                .addMovies(movie)
-//                .build();
-        topTenTrendingMovies response = topTenTrendingMovies.newBuilder().build();
+        Movie movie = Movie.newBuilder()
+                .setMovieId("1")
+                .build();
+
+        topTenTrendingMovies response = topTenTrendingMovies.newBuilder()
+                .addMovies(movie)
+                .build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }

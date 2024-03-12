@@ -2,16 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="movie-info-service" />
         <module name="discovery-server" />
+        <module name="proto" />
+        <module name="trending-movies-service" />
         <module name="ratings-service" />
         <module name="movie-catalog-service" />
         <module name="trending-movies-service (1)" />
-        <module name="proto" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -28,6 +30,7 @@
       <module name="movie-info-service" options="-parameters" />
       <module name="ratings-service" options="-parameters" />
       <module name="ratings-service (1)" options="-parameters" />
+      <module name="trending-movies-service" options="-parameters" />
       <module name="trending-movies-service (1)" options="-parameters" />
       <module name="trending-movies-service (2)" options="-parameters" />
     </option>
